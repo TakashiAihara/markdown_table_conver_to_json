@@ -11,5 +11,8 @@ for i,l in enumerate(lines):
         keys=[_i.strip() for _i in l.split('|')]
     elif i==1: continue
     else:
-        ret.append({keys[_i]:v.strip() for _i,v in enumerate(l.split('|')) if  _i>0 and _i<len(keys)-1})
+        if l[0] == "|":
+            ret.append({keys[_i]:v.strip() for _i,v in enumerate(l.split('|')) if  _i>0 and _i<len(keys)-1})
+        else:
+            ret.append({keys[_i]:v.strip() for _i,v in enumerate(l.split('|')) if  _i>=0 and _i<=len(keys)-1})
 print(json.dumps(ret, indent = 4))
